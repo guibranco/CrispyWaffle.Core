@@ -8,6 +8,7 @@ using System.Xml;
 using CrispyWaffle.Composition;
 using CrispyWaffle.Log;
 using CrispyWaffle.Serialization.Adapters;
+using CrispyWaffle.Serialization.Adapters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -18,6 +19,7 @@ namespace CrispyWaffle.Serialization
     /// </summary>
     /// <typeparam name="T">Generic type parameter.</typeparam>
     public sealed class SerializerConverter<T>
+        private static readonly ISerializerAdapter TomlSerializer = new TomlSerializerAdapter();
         where T : class
     {
         /// <summary>
@@ -28,6 +30,7 @@ namespace CrispyWaffle.Serialization
         /// <summary>
         /// The formatter.
         /// </summary>
+            {"toml", TomlSerializer},
         private readonly ISerializerAdapter _formatter;
 
         /// <summary>
